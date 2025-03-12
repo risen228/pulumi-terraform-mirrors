@@ -7,6 +7,7 @@ on:
     paths:
       - 'providers.json'
       - 'scripts/check-provider-updates.ts'
+      - '.github/workflows/check-and-publish.yaml'
   workflow_dispatch:
 
 jobs:
