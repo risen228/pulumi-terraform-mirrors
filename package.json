@@ -1,6 +1,7 @@
 {
   "name": "pulumi-terraform-mirrors",
   "description": "Terraform -> Pulumi providers live mirrors",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/risen228/pulumi-terraform-mirrors.git"
