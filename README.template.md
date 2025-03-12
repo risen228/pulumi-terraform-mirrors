@@ -8,10 +8,10 @@ This project automatically generates Pulumi SDK packages from Terraform provider
 
 ## Available Providers
 
-| Provider | Organization | Package | Version |
-|----------|--------------|---------|---------|
-| flux | fluxcd | [npm package](https://www.npmjs.com/package/@ptfm/flux) | ![npm version](https://img.shields.io/npm/v/@ptfm/flux.svg) |
-| infisical | Infisical | [npm package](https://www.npmjs.com/package/@ptfm/infisical) | ![npm version](https://img.shields.io/npm/v/@ptfm/infisical.svg) |
+<!-- PROVIDERS_TABLE -->
+
+> [!NOTE]  
+> The table is generated automatically from the `providers.json` file.
 
 ## Usage
 
