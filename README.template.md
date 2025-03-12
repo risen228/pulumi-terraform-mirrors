@@ -28,13 +28,26 @@ pnpm add @ptfm/flux
 Use in your Pulumi code:
 
 ```typescript
-import * as flux from "@ptfm/flux";
+import * as flux from '@ptfm/flux'
 
 // Use the provider resources
-const gitRepository = new flux.FluxBootstrapGit("repo", {
+const gitRepository = new flux.FluxBootstrapGit('repo', {
   // properties
-});
+})
 ```
+
+## Advantages Over Self-Generation
+
+Using these pre-generated providers comes with several benefits:
+
+* **No postinstall scripts** - Packages don't require running `tsc` on installation, eliminating issues when installing packages from scratch (when `.bin` hasn't been created in `node_modules` yet)
+* **Simplified dependency management** - No need to install packages via "file:" references, which can cause issues in some package managers
+* **Cleaner repositories** - No need to store generated SDK code in your own repository, keeping your codebase lean and focused
+* **Always up-to-date** - Automatically updated every 6 hours to match the latest Terraform provider versions
+* **Faster project setup** - Skip the time-consuming provider generation step in your CI/CD pipelines
+* **Reduced build complexity** - Minimize build environments and dependencies in your projects
+* **Consistent versioning** - Package versions match the upstream Terraform provider versions
+* **Zero configuration** - Works out of the box with all package managers and build systems
 
 ## How It Works
 
@@ -49,7 +62,3 @@ const gitRepository = new flux.FluxBootstrapGit("repo", {
 ## Adding New Providers
 
 To request a new provider, open an issue or submit a PR adding it to the `providers.json` file.
-
-## License
-
-MIT
