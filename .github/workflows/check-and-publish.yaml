@@ -94,6 +94,7 @@ jobs:
           
           npm pkg set name=@ptfm/${{ matrix.provider.name }}
           npm pkg delete scripts.postinstall
+          npm pkg delete repository
           npm pkg set repository.url=git+https://github.com/risen228/pulumi-terraform-mirrors.git
           npm pkg set repository.type=git
           npm pkg set files[0]="bin/**"
