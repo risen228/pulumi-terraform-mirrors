@@ -6,5 +6,29 @@
   {
     "org": "Infisical",
     "name": "infisical"
+  },
+  {
+    "org": "namecheap",
+    "name": "namecheap"
+  },
+  {
+    "org": "chainguard-dev",
+    "name": "chainguard"
+  },
+  {
+    "org": "elastic",
+    "name": "elasticstack"
+  },
+  {
+    "org": "netdata",
+    "name": "netdata"
+  },
+  {
+    "org": "infrahq",
+    "name": "infra"
+  },
+  {
+    "org": "BunnyWay",
+    "name": "bunnynet"
   }
 ]
