@@ -22,8 +22,8 @@ function areVersionsEqual(v1: string, v2: string) {
   return first === second
 }
 
-type TerraformVersionResponse = {
-  versions: Array<{ version: string }>
+type TerraformPackageResponse = {
+  version: string
 }
 
 type NpmPackageResponse = {
@@ -41,11 +41,11 @@ for (const provider of providers) {
   let tfVersion: string | null
 
   try {
-    const tfVersions = await fetchJson<TerraformVersionResponse>(
-      `https://registry.terraform.io/v1/providers/${org}/${name}/versions`,
+    const { version } = await fetchJson<TerraformPackageResponse>(
+      `https://registry.terraform.io/v1/providers/${org}/${name}`,
     )
 
-    tfVersion = tfVersions.versions[0]?.version
+    tfVersion = version
   } catch {
     continue
   }
