@@ -70,7 +70,7 @@ jobs:
       
       - name: Generate Pulumi provider
         run: |
-          pulumi package add terraform-provider ${{ matrix.provider.org }}/${{ matrix.provider.name }} || {
+          pulumi package add terraform-provider registry.terraform.io/${{ matrix.provider.org }}/${{ matrix.provider.name }} || {
             echo "Failed to generate provider for ${{ matrix.provider.org }}/${{ matrix.provider.name }}"
             exit 1
           }
