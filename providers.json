@@ -1,0 +1,10 @@
+[
+  {
+    "org": "fluxcd",
+    "name": "flux"
+  },
+  {
+    "org": "Infisical",
+    "name": "infisical"
+  }
+]

@@ -1,0 +1,10 @@
+name: pulumi-terraform-mirrors
+description: Terraform -> Pulumi providers live mirrors
+runtime:
+  name: nodejs
+  options:
+    packagemanager: pnpm
+config:
+  pulumi:tags:
+    value:
+      pulumi:template: typescript

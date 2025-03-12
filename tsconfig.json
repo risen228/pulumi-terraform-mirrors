@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "strict": true,
+        "outDir": "bin",
+        "target": "ES2022",
+        "module": "ES2022",
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "experimentalDecorators": true,
+        "pretty": true,
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitReturns": true,
+        "forceConsistentCasingInFileNames": true
+    },
+    "include": [
+        "scripts/*.ts"
+    ]
+}

@@ -1,0 +1,109 @@
+name: Generate and Publish Pulumi Providers
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  push:
+    paths:
+      - 'providers.json'
+      - 'scripts/check-provider-updates.ts'
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    outputs:
+      providers: ${{ steps.check.outputs.providers }}
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.18.1'
+      
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          run_install: false
+      
+      - name: Install dependencies
+        run: pnpm install
+      
+      - name: Check for provider updates
+        id: check
+        run: |
+          PROVIDERS_JSON=$(pnpm tsx scripts/check-provider-updates.ts)
+          echo "providers=$PROVIDERS_JSON" >> $GITHUB_OUTPUT
+          echo "Providers to update: $PROVIDERS_JSON"
+  
+  generate-and-publish:
+    needs: check
+    if: ${{ needs.check.outputs.providers != '[]' }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        provider: ${{ fromJson(needs.check.outputs.providers) }}
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.18.1'
+          registry-url: 'https://registry.npmjs.org'
+      
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          run_install: false
+      
+      - name: Install dependencies
+        run: pnpm install
+      
+      - uses: pulumi/actions@v6
+      
+      - name: Generate Pulumi provider
+        run: |
+          pulumi package add terraform-provider ${{ matrix.provider.org }}/${{ matrix.provider.name }} || {
+            echo "Failed to generate provider for ${{ matrix.provider.org }}/${{ matrix.provider.name }}"
+            exit 1
+          }
+      
+      - name: Build provider
+        run: |
+          cd sdks/${{ matrix.provider.name }}
+          
+          pnpm install || {
+            echo "Failed to install dependencies"
+            exit 1
+          }
+          
+          pnpm build || {
+            echo "Failed to build provider"
+            exit 1
+          }
+      
+      - name: Prepare for publishing
+        run: |
+          cd sdks/${{ matrix.provider.name }}
+          
+          npm pkg set name=@ptfm/${{ matrix.provider.name }}
+          npm pkg delete scripts.postinstall
+          npm pkg set repository.url=git+https://github.com/risen228/pulumi-terraform-mirrors.git
+          npm pkg set repository.type=git
+          npm pkg set files[0]="bin/**"
+          
+          cp package.json bin/
+      
+      - name: Publish to npm
+        run: |
+          cd sdks/${{ matrix.provider.name }}
+          npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
+          npm publish --access public
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
