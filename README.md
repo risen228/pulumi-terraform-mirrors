@@ -11,10 +11,16 @@ This project automatically generates Pulumi SDK packages from Terraform provider
 
 ## Available Providers
 
-| Provider  | Organization | Package                                                      | Version                                                          |
-| --------- | ------------ | ------------------------------------------------------------ | ---------------------------------------------------------------- |
-| flux      | fluxcd       | [npm package](https://www.npmjs.com/package/@ptfm/flux)      | ![npm version](https://img.shields.io/npm/v/@ptfm/flux.svg)      |
-| infisical | Infisical    | [npm package](https://www.npmjs.com/package/@ptfm/infisical) | ![npm version](https://img.shields.io/npm/v/@ptfm/infisical.svg) |
+| Provider     | Organization   | Package                                                         | Version                                                             |
+| ------------ | -------------- | --------------------------------------------------------------- | ------------------------------------------------------------------- |
+| flux         | fluxcd         | [npm package](https://www.npmjs.com/package/@ptfm/flux)         | ![npm version](https://img.shields.io/npm/v/@ptfm/flux.svg)         |
+| infisical    | Infisical      | [npm package](https://www.npmjs.com/package/@ptfm/infisical)    | ![npm version](https://img.shields.io/npm/v/@ptfm/infisical.svg)    |
+| namecheap    | namecheap      | [npm package](https://www.npmjs.com/package/@ptfm/namecheap)    | ![npm version](https://img.shields.io/npm/v/@ptfm/namecheap.svg)    |
+| chainguard   | chainguard-dev | [npm package](https://www.npmjs.com/package/@ptfm/chainguard)   | ![npm version](https://img.shields.io/npm/v/@ptfm/chainguard.svg)   |
+| elasticstack | elastic        | [npm package](https://www.npmjs.com/package/@ptfm/elasticstack) | ![npm version](https://img.shields.io/npm/v/@ptfm/elasticstack.svg) |
+| netdata      | netdata        | [npm package](https://www.npmjs.com/package/@ptfm/netdata)      | ![npm version](https://img.shields.io/npm/v/@ptfm/netdata.svg)      |
+| infra        | infrahq        | [npm package](https://www.npmjs.com/package/@ptfm/infra)        | ![npm version](https://img.shields.io/npm/v/@ptfm/infra.svg)        |
+| bunnynet     | BunnyWay       | [npm package](https://www.npmjs.com/package/@ptfm/bunnynet)     | ![npm version](https://img.shields.io/npm/v/@ptfm/bunnynet.svg)     |
 
 > [!NOTE]  
 > The table is generated automatically from the `providers.json` file.
